@@ -2,17 +2,23 @@ package tw.com.collbrativetodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.taskValue)
     TextView taskValue;
 
@@ -26,7 +32,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        reference = FirebaseDatabase.getInstance().getReference();
+        reference = FirebaseDatabase.getInstance().getReference(); // Get Root Reference
+
+        setTaskValueChangeListener();
+
+    }
+
+    void setTaskValueChangeListener() {
+        DatabaseReference taskRef = reference.child("task"); // find child task under root
+        // add value change event listener
+        taskRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i(TAG, "Data Snapshot" + dataSnapshot);
+                String task = dataSnapshot.getValue(String.class);
+                taskValue.setText(task);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Error failed to save value
+                Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_saving_value), Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
     @OnClick(R.id.setTaskValue)
