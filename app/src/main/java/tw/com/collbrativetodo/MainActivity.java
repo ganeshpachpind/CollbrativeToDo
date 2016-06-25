@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.taskValue)
     TextView taskValue;
 
-    @BindView(R.id.taskEditor)
-    EditText taskEditor;
+//    @BindView(R.id.taskEditor)
+//    EditText taskEditor;
 
     private DatabaseReference reference;
 
@@ -45,15 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i(TAG, "Data Snapshot" + dataSnapshot);
-                String task = dataSnapshot.getValue(String.class);
-                taskValue.setText(task);
+//                Long task = dataSnapshot.getValue(Long.class);
+//                taskValue.setText(Long.toString(task));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Error failed to save value
-                Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_saving_value), Toast.LENGTH_LONG).show();
-
+                // This method will be triggered in the event that this listener
+                // either failed at the server, or is removed as a result of the security and Firebase rules.
             }
         });
     }
@@ -61,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.setTaskValue)
     void onSetValueClicked() {
         // we need to save entry from text editor to server database
-        String task = taskEditor.getText().toString();
-        reference.child("task").setValue(task);
-        taskValue.setText(task);
+//        String task = taskEditor.getText().toString();
+        reference.child("task").setValue(10);
+//        taskValue.setText(task);
     }
 }
