@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "112512690138",
+    "firebase_url": "https://collbrativetodo.firebaseio.com",
+    "project_id": "collbrativetodo",
+    "storage_bucket": "collbrativetodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112512690138:android:35e7f7dde9f153c0",
+        "android_client_info": {
+          "package_name": "tw.com.collbrativetodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112512690138-88tngcc3lgl1pnmg9lkssk125udenfsv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tw.com.collbrativetodo",
+            "certificate_hash": "3BF5C817A231DD43DE8FE0838E8E5AC6574E92CE"
+          }
+        },
+        {
+          "client_id": "112512690138-rkkc3ft96dgtnd05p8h1nl6a4derev8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6gk6YcfW1vzN-3Vcn6UjDGBUoWXHAUVE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112512690138-rkkc3ft96dgtnd05p8h1nl6a4derev8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
