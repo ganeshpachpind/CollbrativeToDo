@@ -49,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
         tasks = new ArrayList<>();
         taskListAdapater = new TaskListAdapater(tasks);
         listView.setAdapter(taskListAdapater);
-        reference = FirebaseDatabase.getInstance().getReference(); // Get Root Reference
+
+        FirebaseDatabase instance = FirebaseDatabase.getInstance();
+        instance.setPersistenceEnabled(true);
+
+        reference = instance.getReference(); // Get Root Reference
 
 //        setTaskValueChangeListener();
         setTaskAddListener();
