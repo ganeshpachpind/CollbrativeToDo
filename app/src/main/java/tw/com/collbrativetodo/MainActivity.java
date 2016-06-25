@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,14 +15,19 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import model.Task;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
+
     @BindView(R.id.taskValue)
     TextView taskValue;
-
-//    @BindView(R.id.taskEditor)
-//    EditText taskEditor;
+    @BindView(R.id.taskEditor)
+    EditText taskEditor;
+    @BindView(R.id.priorityValue)
+    TextView priorityValue;
+    @BindView(R.id.priorityEditor)
+    EditText priorityEditor;
 
     private DatabaseReference reference;
 
@@ -33,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         reference = FirebaseDatabase.getInstance().getReference(); // Get Root Reference
-
         setTaskValueChangeListener();
 
     }
@@ -45,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i(TAG, "Data Snapshot" + dataSnapshot);
-//                Long task = dataSnapshot.getValue(Long.class);
-//                taskValue.setText(Long.toString(task));
+                Task task = dataSnapshot.getValue(Task.class);
+                if (task != null) {
+                    taskValue.setText(task.getTaskName());
+                    priorityValue.setText(Integer.toString(task.getPriority()));
+                }
             }
 
             @Override
@@ -60,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.setTaskValue)
     void onSetValueClicked() {
         // we need to save entry from text editor to server database
-//        String task = taskEditor.getText().toString();
-        reference.child("task").setValue(10);
-//        taskValue.setText(task);
+        String taskName = taskEditor.getText().toString();
+        int priority = Integer.parseInt(priorityEditor.getText().toString());
+        Task task = new Task(taskName,
+                priority);
+        reference.child("task").setValue(task);
+        taskValue.setText(taskName);
+        priorityValue.setText(Integer.toString(priority));
     }
 }

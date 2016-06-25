@@ -2,4 +2,6 @@
   <string name="app_name">CollbrativeTodo</string>
   <string name="set_value">Set Value</string>
   <string name="error_saving_value">Error Saving Value</string>
+  <string name="task">Task</string>
+  <string name="priority">Priority</string>
 </resources>

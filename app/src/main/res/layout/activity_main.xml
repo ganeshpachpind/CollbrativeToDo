@@ -11,13 +11,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tw.com.collbrativetodo.MainActivity">
 
-  <!--<EditText-->
-      <!--android:id="@+id/taskEditor"-->
-      <!--android:layout_width="match_parent"-->
-      <!--android:layout_height="wrap_content"/>-->
+  <EditText
+      android:id="@+id/taskEditor"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/task"/>
+
+  <EditText
+      android:id="@+id/priorityEditor"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/priority"
+      android:inputType="number"/>
 
   <TextView
       android:id="@+id/taskValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+
+  <TextView
+      android:id="@+id/priorityValue"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
